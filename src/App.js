@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar';
+//import Employees from './components/Employees';
 import 'semantic-ui-css/semantic.min.css';
 import axios from 'axios';
 
 class App extends Component {
 
-  componentDidMount(){
-    axios
-      .get("https://randomuser.me/api/?results=50")
-      .then(res => console.log(res.data));
+  state={
+    employees: []
+  }
+
+  async componentDidMount(){
+    // 50 Dummy Employees from Random User Generator API
+    const res = await axios.get("https://randomuser.me/api/?results=50");
+
+    this.setState({ employees: res.data.results })
+    console.log(this.state.employees)
   }
 
   render(){
