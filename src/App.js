@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar';
-//import Employees from './components/Employees';
+import Employees from './components/Employees/Employees';
 import 'semantic-ui-css/semantic.min.css';
 import axios from 'axios';
 
@@ -23,6 +23,7 @@ class App extends Component {
     return (
     <div>
       <Navbar />
+      <Employees employees={this.state.employees} />
     </div>
   );
   }
