@@ -12,7 +12,7 @@ class App extends Component {
 
   async componentDidMount(){
     // 50 Dummy Employees from Random User Generator API
-    const res = await axios.get("https://randomuser.me/api/?results=50");
+    const res = await axios.get("https://randomuser.me/api/?results=50&nat=us");
 
     this.setState({ employees: res.data.results })
     console.log(this.state.employees)
