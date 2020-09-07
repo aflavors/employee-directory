@@ -2,30 +2,29 @@ import React, { Component } from 'react';
 import Navbar from './components/Navbar';
 import Employees from './components/Employees/Employees';
 import 'semantic-ui-css/semantic.min.css';
-import axios from 'axios';
+import API from "./utils/API";
 
 class App extends Component {
 
-  state={
-    employees: []
+  state = {
+    employees: [],
+    filteredEmployees: []
   }
 
   async componentDidMount(){
-    // 50 Dummy Employees from Random User Generator API
-    const res = await axios.get("https://randomuser.me/api/?results=50&nat=us");
-
-    this.setState({ employees: res.data.results })
-    console.log(this.state.employees)
+    API.getEmp().then(results => {
+      this.setState({ employees: results.data.results });
+      console.log(this.state.employees)
+    })
   }
 
   render(){
-
     return (
-    <div>
-      <Navbar />
-      <Employees employees={this.state.employees} />
-    </div>
-  );
+      <div>
+        <Navbar />
+        <Employees employees={this.state.employees} />
+      </div>
+    );
   }
 }
 
