@@ -1,19 +1,41 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Table, Image } from 'semantic-ui-react';
 
 const EmployeeItem = (props) => {
     
-    //Destructuring this.state for access to props
-    const { id, name, email, picture } = props.employee;
+    //Split dob.date string at the "T" to format DOB
+    function dateFormat(date){
+        const temp = date.split("T");
+        return temp[0];
+    }
 
-        return (
-            <div>
-                <h3>Name: {name.first} {name.last}</h3>
-                <img src={picture.thumbnail} alt="Thumbnail portrait"/>
-                <p>ID: {id.value}</p>
-                <p>Email: {email} </p>
-            </div>
-        )
+    //Destructuring this.state for access to props
+    const { name, email, picture, phone, dob } = props.employee;
+    return (
+        <Table.Row>
+            {/* Image */}
+            <Table.Cell>
+                <Image src={picture.thumbnail} alt="Thumbnail portrait of"/>
+            </Table.Cell>
+            {/* First and Last Name */}
+            <Table.Cell>
+                <p>{name.first} {name.last}</p>
+            </Table.Cell>
+            {/* Phone Number */}
+            <Table.Cell>
+                <p>{phone}</p>
+            </Table.Cell>
+            {/* Email */}
+            <Table.Cell>
+                <p>{email}</p>
+            </Table.Cell>
+            {/* Formatted DOB */}
+            <Table.Cell>
+                <p>{dateFormat(dob.date)}</p>
+            </Table.Cell>
+        </Table.Row>
+    )
 }
 
 EmployeeItem.propTypes = {
